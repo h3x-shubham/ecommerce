@@ -1,3 +1,4 @@
+'use client'
 import { ChevronDownIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 import {
   DropdownMenu,
@@ -11,8 +12,17 @@ import {
 import { Button } from "./ui/Button";
 import React from "react";
 
-function Quantity() {
+function Quantity({calback}:any) {
   const [val, setVal] = React.useState("1");
+  // function data(event){
+  //   setVal(event.target.value);
+    // props.calback.handleqtydata(val)
+  // }
+  const af=(e:any)=>{
+    setVal(e);
+    // console.log(typeof e)
+    // calback(e)
+  }
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -25,7 +35,11 @@ function Quantity() {
         <DropdownMenuRadioGroup
         //   className="w-[45px]"
           value={val}
-          onValueChange={setVal}
+          onValueChange={
+          //  data
+// setVal
+af
+        }
         >
           <DropdownMenuRadioItem value="1">1</DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="2">2</DropdownMenuRadioItem>

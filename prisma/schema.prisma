@@ -72,7 +72,7 @@ model Category {
 }
 
 model Cart {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  id        String   @id @default(cuid()) @map("_id") 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -85,8 +85,8 @@ model Cart {
 }
 
 model CartItem {
-  id           String @id @default(auto()) @map("_id") @db.ObjectId
-  fakeid       String
+  id           String @id @default(cuid()) @map("_id") 
+  fakeid       Int
   title        String
   price        Float
   description  String
@@ -94,14 +94,14 @@ model CartItem {
   image        String
   rating Json
  
-  quantity     Int
+  quantity     Int?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   // productId String @db.ObjectId
 
-  cartId String @db.ObjectId
+  cartId String 
   cart   Cart   @relation(fields: [cartId], references: [id], onDelete: Cascade)
 
   @@map("cart_items")
